@@ -19,7 +19,7 @@ export default function Parser(sequence) {
 
             result.push({ type, transaction, resource });
         } else if (operation.startsWith('C')) {
-            result.push({ type: 'C', transaction: operation.substr(1) });
+            result.push({ type: 'C' + operation.substr(1), transaction: 'C', resource: operation.substr(1) });
         }
     });
 
