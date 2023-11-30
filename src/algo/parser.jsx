@@ -4,12 +4,12 @@ export default function Parser(sequence) {
   
     operations.forEach(operation => {
       const matchResult = operation.match(/([RW])(\w+)\((\w+)\)/);
-      const [type, transaction, resource] = matchResult || [];
-      if (type && transaction && resource) {
-        result.push({ type, transaction, resource });
+      const [type, action, transaction, resource] = matchResult || [];
+      if (type && action &&transaction && resource) {
+        result.push({ type, action, transaction, resource });
       } else if (operation.startsWith('C')) {
-        result.push({ type: 'C', transaction: 'C', resource: operation.substr(1) });
+        result.push({ type: 'C'+transaction, action: 'C',transaction: transaction, resource: '-' });
       }
     });
     return result;
-  }  
+}
