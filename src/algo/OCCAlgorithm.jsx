@@ -43,7 +43,7 @@ export default function OCCAlgorithm(input, parsed) {
                                 condition = condition | true;
                             }
                         }
-                        valid = valid && (firstCondition | secondCondition);
+                        valid = valid && (condition);
                         
                     }
                 }
