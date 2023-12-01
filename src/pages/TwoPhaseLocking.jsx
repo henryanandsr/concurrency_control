@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import TwoPhaseLockingAlgorithm from '../algo/TwoPhaseLockingAlgorithm';
-import { Heading, Input, Button, Box, Text } from '@chakra-ui/react';
+import { Heading, Input, Button, Box, Text, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 
 export default function TwoPhaseLocking() {
     const [inputSequence, setInputSequence] = useState('');
     const [result, setResult] = useState([]);
+    const [transactions, setTransactions] = useState([]);
 
     const handleInputChange = (event) => {
         setInputSequence(event.target.value);
@@ -14,7 +15,12 @@ export default function TwoPhaseLocking() {
         const twoPhaseLocking = new TwoPhaseLockingAlgorithm(inputSequence);
         twoPhaseLocking.execute();
         // Assuming setResult is meant to be updated with the result, modify this part accordingly
-        setResult(twoPhaseLocking.getResultTable());
+        setResult(twoPhaseLocking.resultTable);
+        var uniqueTransactions = [...new Set(twoPhaseLocking.resultTable.map(item => item.transaction))];
+        console.log("transactions");
+        console.log(uniqueTransactions);
+        setTransactions(uniqueTransactions);
+        setResult(twoPhaseLocking.resultTable);
     };
 
     return (
@@ -25,12 +31,11 @@ export default function TwoPhaseLocking() {
         width={"100vw"} 
         alignItems="center" 
         justifyContent="center"
-        background={"#edf2f7"}
-        >
+        background={"#edf2f7"}>
             <Heading mb={6}
-            marginTop={"30vh"}
             color={"#2a4365"}
-            >Two Phase Locking</Heading>
+            marginTop={"30vh"}
+            >Two-Phase Locking</Heading>
             <Input
                 type="text"
                 placeholder="Enter something..."
@@ -40,30 +45,47 @@ export default function TwoPhaseLocking() {
                 width={"50vw"}
                 background={"white"}
             />
-            <Button 
-            onClick={handleButtonClick} 
+            <Button onClick={handleButtonClick} 
             colorScheme="blue"
             marginLeft={4}
             _hover={{
                 bg: "white",
                 color: "#4299e1",
-            }}>
+            }}
+            >
                 Submit
             </Button>
 
             {/* Display the result */}
-            <Box mt={8}>
+            <Box mt={8} overflowY="auto" maxH="100%">
                 <Heading size="md" mb={4}>
                     Result:
                 </Heading>
-                {result.length > 0 ? (
-                    <Box textAlign="left">
-                        <Text as="pre">{JSON.stringify(result, null, 2)}</Text>
-                    </Box>
+                {result.length > 0 && transactions.length > 0 ? (
+                    <Table variant="striped" colorScheme="blue">
+                        <Thead>
+                            <Tr>
+                                <Th>Iteration</Th>
+                                {transactions.map((transaction) => (
+                                    <Th key={transaction}>{transaction}</Th>
+                                ))}
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {result.map((row, index) => (
+                                <Tr key={`${row.transaction}-${row.type}-${index}`}>
+                                    <Td>{index + 1}</Td>
+                                    {transactions.map((transaction) => (
+                                        <Td key={`${transaction}-${row.type}-${index}`}>{row.transaction === transaction ? row.action : ''}</Td>
+                                    ))}
+                                </Tr>
+                            ))}
+                        </Tbody>
+                    </Table>
                 ) : (
                     <Text>No result yet. Click 'Submit' to see the result.</Text>
                 )}
             </Box>
         </Box>
     );
-}
+};

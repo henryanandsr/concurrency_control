@@ -1,20 +1,23 @@
 import MVCCAlgorithm from '../algo/MVCCAlgorithm';
-import {Button, Input} from '@chakra-ui/react';
+import {Box, Button, Input, Heading} from '@chakra-ui/react';
 import {useState} from 'react';
+
 export default function MVCC() {
     const [input, setInput] = useState("");
-    const [output, setOutput] = useState("");
+    const [result, setResult] = useState([]);
 
     const handleSubmit = () => {
         const algo = new MVCCAlgorithm(input);
         algo.execute();
+        setResult(algo.result);
     }
     const handleInputChange = (event) => {
         setInput(event.target.value);
     };
+
     return (
-        <>
-            <h1>Multiversion Timestamp Ordering Concurrency Control</h1>
+        <Box height="100vh" width={"100vw"} >
+            <Heading>Multiversion Timestamp Ordering Concurrency Control</Heading>
             <Input
                 type="text"
                 placeholder="Enter something..."
@@ -23,6 +26,11 @@ export default function MVCC() {
                 mb={4}
             />
             <Button onClick={handleSubmit}>Submit</ Button>
-        </>
+            {/* Display the result */}
+            <Box>
+                <Heading>Result:</Heading>
+                <Text>{JSON.stringify(result, null, 2)}</Text>
+            </Box>
+        </Box>
     )
 }
