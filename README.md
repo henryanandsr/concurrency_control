@@ -18,7 +18,7 @@ Petunjuk Penggunaan 2
 ## Input
 - `C[number]`
 - `R[number](alphabet)`
-- `W[number(alphabet)]`
+- `W[number](alphabet)`
 
 Contoh valid input:
 `R1(X);R2(Y);R3(Z);C1;C2;C3`
