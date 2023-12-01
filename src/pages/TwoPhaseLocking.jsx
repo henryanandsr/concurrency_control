@@ -10,8 +10,8 @@ export default function TwoPhaseLocking() {
     };
 
     const handleButtonClick = () => {
-        const parsedResult = TwoPhaseLockingAlgorithm(inputSequence);
-        setResult(parsedResult);
+        const TwoPhaseLocking = new TwoPhaseLockingAlgorithm(inputSequence);
+        TwoPhaseLocking.execute();
     };
 
     return (
