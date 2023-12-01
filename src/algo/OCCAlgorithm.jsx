@@ -45,6 +45,7 @@ export default function OCCAlgorithm(input, parsed) {
                         }
                         valid = valid && (condition);
                         
+                        
                     }
                 }
             });
@@ -83,3 +84,6 @@ export default function OCCAlgorithm(input, parsed) {
         return originalSchedule.map(operation => operation['type']);
     }
 }
+
+// R1(A);R2(B);W2(B);R2(A);W2(A);W1(A);C1;C2
+// R3(Y);R3(Z);R1(X);W1(X);W3(Y);W3(Z);C3;R2(Z);R1(Y);W1(Y);C1;R2(Y);W2(Y);R2(X);W2(X);C2

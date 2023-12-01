@@ -35,16 +35,35 @@ export default function OptimisticConcurrencyControl() {
     };
 
     return (
-        <Box textAlign="center" p={10} height="100%" minHeight="100vh" width="100vw">
-            <Heading mb={6}>Optimistic Concurrency Control</Heading>
+        <Box 
+        textAlign="center" 
+        p={12} 
+        height="100vh" 
+        width={"100vw"} 
+        alignItems="center" 
+        justifyContent="center"
+        background={"#edf2f7"}>
+            <Heading mb={6}
+            color={"#2a4365"}
+            marginTop={"30vh"}
+            >Optimistic Concurrency Control</Heading>
             <Input
                 type="text"
                 placeholder="Enter something..."
                 value={inputSequence}
                 onChange={handleInputChange}
                 mb={4}
+                width={"50vw"}
+                background={"white"}
             />
-            <Button onClick={handleButtonClick} colorScheme="blue">
+            <Button onClick={handleButtonClick} 
+            colorScheme="blue"
+            marginLeft={4}
+            _hover={{
+                bg: "white",
+                color: "#4299e1",
+            }}
+            >
                 Submit
             </Button>
 

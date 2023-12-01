@@ -9,18 +9,43 @@ export default function Landing() {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
+            padding={12}
             height="100vh"
             width="100vw"
+            background={"#edf2f7"}
         >
-            <Heading mb={6}>Concurrency Control Examples</Heading>
+            <Heading
+            fontSize={"5xl"}
+            mb={6}
+            color={"#2a4365"}
+            >Concurrency Control Examples</Heading>
             <Link to="/two-phase-locking">
-                <Button mb={3}>Two Phase Locking</Button>
+                <Button mb={3}
+                backgroundColor={"white"}
+                _hover={{
+                    bg: "#2a4365",
+                    color: "white",
+                }}
+                >Two Phase Locking</Button>
             </Link>
             <Link to="/optimistic-concurrency-control">
-                <Button mb={3}>Optimistic Concurrency Control</Button>
+                <Button mb={3}
+                backgroundColor={"white"}
+                _hover={{
+                    bg: "#2a4365",
+                    color: "white",
+                }}
+                >Optimistic Concurrency Control</Button>
             </Link>
             <Link to="/mvcc">
-                <Button>Multiversion Timestamp Ordering Concurrency Control</Button>
+                <Button
+                mb={3}
+                backgroundColor={"white"}
+                _hover={{
+                    bg: "#2a4365",
+                    color: "white",
+                }}
+                >Multiversion Timestamp Ordering Concurrency Control</Button>
             </Link>
         </Box>
     );

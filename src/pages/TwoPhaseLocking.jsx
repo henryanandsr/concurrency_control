@@ -18,16 +18,36 @@ export default function TwoPhaseLocking() {
     };
 
     return (
-        <Box textAlign="center" p={10} height="100vh" width="100vw">
-            <Heading mb={6}>Two Phase Locking</Heading>
+        <Box 
+        textAlign="center" 
+        p={12} 
+        height="100vh" 
+        width={"100vw"} 
+        alignItems="center" 
+        justifyContent="center"
+        background={"#edf2f7"}
+        >
+            <Heading mb={6}
+            marginTop={"30vh"}
+            color={"#2a4365"}
+            >Two Phase Locking</Heading>
             <Input
                 type="text"
                 placeholder="Enter something..."
                 value={inputSequence}
                 onChange={handleInputChange}
                 mb={4}
+                width={"50vw"}
+                background={"white"}
             />
-            <Button onClick={handleButtonClick} colorScheme="blue">
+            <Button 
+            onClick={handleButtonClick} 
+            colorScheme="blue"
+            marginLeft={4}
+            _hover={{
+                bg: "white",
+                color: "#4299e1",
+            }}>
                 Submit
             </Button>
 
