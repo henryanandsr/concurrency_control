@@ -27,7 +27,8 @@ export default function TwoPhaseLocking() {
         <Box 
         textAlign="center" 
         p={12} 
-        height="100vh" 
+        height="100%"
+        minHeight="100vh"
         width={"100vw"} 
         alignItems="center" 
         justifyContent="center"
